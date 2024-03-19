@@ -1,0 +1,28 @@
+{% extends 'layouts/layout.html' %}
+
+{% block content %}
+
+<h2>REGISTER</h2>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+    </div>
+{% endif %}
+{% endwith %}
+<form action="/signup" method="POST" class="bg-white p-8 rounded shadow-md">
+    <label for="name" class="block mb-2">Name:</label>
+    <input type="text" id="name" name="name" class="w-full p-2 mb-4 border rounded">
+
+    <label for="email" class="block mb-2">Email:</label>
+    <input type="email" id="email" name="email" class="w-full p-2 mb-4 border rounded">
+
+    <label for="password" class="block mb-2">Password:</label>
+    <input type="password" id="password" name="password" class="w-full p-2 mb-4 border rounded">
+
+    <label for="confirm_password" class="block mb-2">Confirm Password:</label>
+    <input type="password" id="confirm_password" name="confirm_password" class="w-full p-2 mb-4 border rounded">
+
+    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-green-600">Register</button>
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "layouts/layout.html" %}
+
+{% block content %}
+<h2 class="title">
+  Welcome, {{props.name}}!
+</h2>
+
+<h3>Mis PyHoots</h3>
+<a href="{{ url_for('pyhoot.create') }}">Crear PyHoot</a>
+<ul>
+  <li><a href="">Preguntas HTML</a></li>
+  <li><a href="">Preguntas CSS</a></li>
+  <li><a href="">Preguntas Javacript</a></li>
+  <li><a href="">Preguntas Python</a></li>
+  <li><a href="">Preguntas Webhooks</a></li>
+</ul>
+{% endblock %}

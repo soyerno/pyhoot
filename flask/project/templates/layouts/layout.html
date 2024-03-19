@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth focus:scroll-auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{props.name}}</title>
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    {% include 'components/nav.html' %}
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        © {{ props.year }} - {{ props.company }}. Todos los derechos reservados.
+    </footer>
+</body>
+</html>

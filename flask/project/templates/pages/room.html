@@ -1,0 +1,63 @@
+{% extends 'layouts/layout.html' %}
+
+{% block content %}
+
+<h2>ROOM: {{ props.id }}</h2>
+
+<button onclick="leave()">LEAVE ROOM</button>
+
+<div id="room-container"></div>
+
+<script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+<script type="text/javascript">
+    const socket = io.connect('http://' + document.domain + ':' + location.port);
+
+    // Leave a room
+    function leave() {
+        socket.emit('leave', { room: '{{ props.id }}' });
+        window.location.href = '/';
+    }
+
+    function addAvatar(username, sid) {
+        const avatar = document.createElement('img');
+        avatar.setAttribute("src", "https://api.dicebear.com/8.x/adventurer/svg?seed=" + username);
+        avatar.setAttribute("width", 200);
+        avatar.setAttribute("data-sid", sid);
+        const container = document.getElementById("room-container");
+        container.appendChild(avatar);
+    }
+
+    function removeAvatar(sid) {
+        const avatar = document.querySelector(`[data-sid='${sid}']`);
+        if (avatar) {
+            avatar.remove();
+        }
+    }
+
+    (() => {
+        // Join a room
+        socket.emit('join', { room: '{{ props.id }}', user: "{{ props.user }}" });
+
+        socket.on('message', function(data) {
+            console.log(data);
+        });
+
+        socket.on('user-join', function(data) {
+            // addAvatar(data.name, data.sid);
+        });
+
+        socket.on('user-left', function(data) {
+            removeAvatar(data.sid);
+        });
+
+        socket.on('room_users', function(data) {
+            const container = document.getElementById("room-container");
+            container.innerHTML = "";
+            data.users.forEach(user => {
+                addAvatar(user.name, user.sid);
+            });
+        });
+    })();
+</script>
+
+{% endblock %}

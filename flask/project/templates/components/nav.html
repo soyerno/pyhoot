@@ -1,0 +1,16 @@
+<header>
+    <nav aria-label="header-nav">
+        <dl class="menu">
+            <dt><a href="{{ url_for('main.home') }}">Inicio</a></dt>
+            {% if not current_user.is_authenticated %}
+            <dt><a href="{{ url_for('auth.login') }}">Iniciar Sesión</a></dt>
+            <dt><a href="{{ url_for('auth.signup') }}">Registarse</a></dt>
+            {% endif %}
+            {% if current_user.is_authenticated %}
+            <dt><a href="{{ url_for('auth.profile') }}">Perfíl</a></dt>
+            <dt><a href="{{ url_for('socket.room', id="test-123") }}">Sala Test</a></dt>
+            <dt><a href="{{ url_for('auth.logout') }}">Salir</a></dt>
+            {% endif %}
+        </dl>
+    </nav>
+</header>

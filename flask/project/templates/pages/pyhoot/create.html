@@ -1,0 +1,34 @@
+{% extends 'layouts/layout.html' %}
+
+{% block content %}
+
+<h1>Create PyHoot</h1>
+
+<form id="questionForm" method="POST" action="/dashboard/pyhoot/create">
+    <label for="question">Question:</label><br>
+    <input type="text" id="question" name="question" required><br><br>
+    
+    <label for="option1">Option 1:</label><br>
+    <input type="text" id="option1" name="option1" required><br><br>
+    
+    <label for="option2">Option 2:</label><br>
+    <input type="text" id="option2" name="option2" required><br><br>
+    
+    <label for="option3">Option 3:</label><br>
+    <input type="text" id="option3" name="option3"><br><br>
+    
+    <label for="option4">Option 4:</label><br>
+    <input type="text" id="option4" name="option4"><br><br>
+    
+    <label for="correctOption">Correct Option:</label><br>
+    <select id="correctOption" name="correctOption" required>
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+        <option value="option4">Option 4</option>
+    </select><br><br>
+
+    <input type="submit" value="Create Question">
+</form>
+
+{% endblock %}
