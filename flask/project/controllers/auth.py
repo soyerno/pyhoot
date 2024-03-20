@@ -8,8 +8,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from ..models import User
 from .. import db
 
-from ..services.user import validate_user_login
-
 auth = Blueprint('auth', __name__)
 
 page_name = os.environ.get('NAME')
